@@ -3,6 +3,8 @@
 
 namespace App\Entity;
 
+use App\Partial\IdAwareInterface;
+use App\Partial\IdAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,15 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  */
 
-class Doctor
+class Doctor implements IdAwareInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue()
-     * @var int
-     */
-    private $id;
+   use IdAwareTrait;
 
     /**
      * @ORM\Column(type="string")
@@ -34,16 +30,33 @@ class Doctor
     private $lastName;
 
     /**
-     * @param int $id
+     * @ORM\ManyToOne(targetEntity="App\Entity\Specialization")
+     * @var Specialization
      */
-    public function setId(int $id): void
+
+    private $specialization;
+
+    /**
+     * @return Specialization
+     */
+    public function getSpecialization(): ?Specialization
     {
-        $this->id = $id;
+        return $this->specialization;
+    }
+
+    /**
+     * @param Specialization $specialization
+     */
+    public function setSpecialization(Specialization $specialization): void
+    {
+        $this->specialization = $specialization;
     }
 
     /**
      * @param string $firstName
      */
+
+
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
@@ -57,13 +70,6 @@ class Doctor
         $this->lastName = $lastName;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     /**
      * @return string
@@ -80,6 +86,7 @@ class Doctor
     {
         return $this->lastName;
     }
+
 
 
 }
