@@ -86,6 +86,10 @@ class Doctor implements IdAwareInterface
     {
         return $this->lastName;
     }
+    public function __toString() :string
+    {
+        return $this->firstName . ' ' . $this->lastName ;
+    }
 
 
 
