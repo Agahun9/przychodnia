@@ -1,13 +1,8 @@
 <?php
-
-
 namespace App\Entity;
-
-
 use App\Partial\IdAwareInterface;
 use App\Partial\IdAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Class Visit
  * @package App\Entity
@@ -16,31 +11,26 @@ use Doctrine\ORM\Mapping as ORM;
 class Visit implements IdAwareInterface
 {
     use IdAwareTrait;
-
     /**
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     private $startDate;
-
     /**
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     private $endDate;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Patient")
-     * @var Patient
-     */
-    private $patient;
-
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Doctor")
      * @var Doctor
      */
     private $doctor;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Patient")
+     * @var Patient
+     */
+    private $patient;
     /**
      * @return \DateTime
      */
@@ -48,7 +38,6 @@ class Visit implements IdAwareInterface
     {
         return $this->startDate;
     }
-
     /**
      * @param \DateTime $startDate
      */
@@ -56,7 +45,6 @@ class Visit implements IdAwareInterface
     {
         $this->startDate = $startDate;
     }
-
     /**
      * @return \DateTime
      */
@@ -64,7 +52,6 @@ class Visit implements IdAwareInterface
     {
         return $this->endDate;
     }
-
     /**
      * @param \DateTime $endDate
      */
@@ -72,23 +59,6 @@ class Visit implements IdAwareInterface
     {
         $this->endDate = $endDate;
     }
-
-    /**
-     * @return Patient
-     */
-    public function getPatient(): ?Patient
-    {
-        return $this->patient;
-    }
-
-    /**
-     * @param Patient $patient
-     */
-    public function setPatient(Patient $patient): void
-    {
-        $this->patient = $patient;
-    }
-
     /**
      * @return Doctor
      */
@@ -96,7 +66,6 @@ class Visit implements IdAwareInterface
     {
         return $this->doctor;
     }
-
     /**
      * @param Doctor $doctor
      */
@@ -104,6 +73,24 @@ class Visit implements IdAwareInterface
     {
         $this->doctor = $doctor;
     }
-
-
+    /**
+     * @return Patient
+     */
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+    /**
+     * @param Patient $patient
+     */
+    public function setPatient(Patient $patient): void
+    {
+        $this->patient = $patient;
+    }
+    public function __toString()
+    {
+        return $this->startDate->format('Y-m-d h:i') . ' '
+            . $this->endDate->format('Y-m-d h:i') . ' '
+            . $this->patient->__toString();
+    }
 }
