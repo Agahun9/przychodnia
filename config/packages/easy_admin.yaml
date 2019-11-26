@@ -1,6 +1,49 @@
-#easy_admin:
-#    entities:
-#        # List the entity class name you want to manage
-#        - App\Entity\Product
-#        - App\Entity\Category
-#        - App\Entity\User
+easy_admin:
+    site_name: 'Przychodnia testowa'
+    formats:
+        datetime: 'd/m/Y H:i'
+    design:
+        menu:
+            - { entity: 'Patient', icon: 'user' }
+            - { entity: 'Doctor', icon: 'user-nurse'}
+            - { entity: 'Visit', icon: 'calendar'}
+            - { entity: 'Specialization'}
+    entities:
+        Doctor:
+            label: 'Lekarz'
+            class: App\Entity\Doctor
+            show:
+                fields:
+                    - 'firstName'
+                    - 'lastName'
+                    - 'specialization'
+                    - { property: 'visits', template: 'admin/visits.html.twig'}
+            search:
+                fields:
+                    - 'firstName'
+                    - 'lastName'
+                    - 'specialization.name'
+        Visit:
+            label: 'Wizyta'
+            class: App\Entity\Visit
+        Specialization:
+            label: 'Specjalizacja'
+            class: App\Entity\Specialization
+        Patient:
+            label: 'Pacjent'
+            class: App\Entity\Patient
+            show:
+                fields:
+                    - {label: 'Imie', property: 'firstName'}
+                    - {label: 'Nazwisko', property: 'lastName'}
+            edit:
+                fields:
+                    - {label: 'Imie', property: 'firstName'}
+                    - {label: 'Nazwisko', property: 'lastName'}
+            list:
+                fields:
+                    - {label: 'ID', property: 'id'}
+                    - {label: 'Imie', property: 'firstName'}
+                    - {label: 'Nazwisko', property: 'lastName'}
+    list:
+        actions: ['show']
