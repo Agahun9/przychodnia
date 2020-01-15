@@ -9,9 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @package App\Entity
  * @ORM\Entity()
  */
-class Doctor implements IdAwareInterface
+class Doctor extends User
 {
-    use IdAwareTrait;
     /**
      * @ORM\Column(type="string")
      * @var string

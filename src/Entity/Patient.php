@@ -1,28 +1,25 @@
 <?php
-
-
 namespace App\Entity;
-
 use App\Partial\IdAwareInterface;
 use App\Partial\IdAwareTrait;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Class Patient
  * @package App\Entity
  * @ORM\Entity()
  */
-class Patient implements IdAwareInterface
+class Patient extends User
 {
-    use IdAwareTrait;
-
     /**
      * @ORM\Column(type="string")
      * @var string
      */
-
     private $firstName;
-
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $lastName;
     /**
      * @return string
      */
@@ -30,7 +27,6 @@ class Patient implements IdAwareInterface
     {
         return $this->firstName;
     }
-
     /**
      * @param string $firstName
      */
@@ -38,7 +34,6 @@ class Patient implements IdAwareInterface
     {
         $this->firstName = $firstName;
     }
-
     /**
      * @return string
      */
@@ -46,7 +41,6 @@ class Patient implements IdAwareInterface
     {
         return $this->lastName;
     }
-
     /**
      * @param string $lastName
      */
@@ -54,19 +48,8 @@ class Patient implements IdAwareInterface
     {
         $this->lastName = $lastName;
     }
-
-    /**
-     * @ORM\Column(type="string")
-     * @var string
-     */
-    private $lastName;
-
-
-    public function __toString() :string
+    public function __toString(): string
     {
-        return $this->firstName . ' ' . $this->lastName ;
+        return $this->firstName . ' ' . $this->lastName;
     }
-
-
-
 }
