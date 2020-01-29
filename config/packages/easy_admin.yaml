@@ -3,6 +3,8 @@ easy_admin:
     formats:
         datetime: 'd/m/Y H:i'
     design:
+        templates:
+            layout: 'admin/custom_edit_form.html.twig'
         menu:
             - { entity: 'Patient', icon: 'user' }
             - { entity: 'Doctor', icon: 'user-nurse'}
@@ -23,6 +25,19 @@ easy_admin:
                     - 'firstName'
                     - 'lastName'
                     - 'specialization.name'
+            edit:
+              fields:
+                - {label: 'Imie', property: 'firstName'}
+                - {label: 'Nazwisko', property: 'lastName'}
+                - {label: 'Email', property: 'email'}
+                - {label: 'Specjalizacja', property: 'specialization'}
+            new:
+                fields:
+                    - {label: 'Imie', property: 'firstName'}
+                    - {label: 'Nazwisko', property: 'lastName'}
+                    - {label: 'Email', property: 'email'}
+                    - {label: 'Hasło', property: 'password'}
+                    - {label: 'Specjalizacja', property: 'specialization'}
         Visit:
             label: 'Wizyta'
             class: App\Entity\Visit

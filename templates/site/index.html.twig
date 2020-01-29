@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SiteController!{% endblock %}
+
+{% block body %}
+<body>
+{% for label, messages in app.flashes(['success_logout']) %}
+        {% for message in messages %}
+                <div class="flash-{{ label }}">
+                        {{ message }}
+                </div>
+        {% endfor %}
+{% endfor %}
+
+<a href="{{ path('app_login') }}">Logowanie</a>
+</body>
+{% endblock %}
