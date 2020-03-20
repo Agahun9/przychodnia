@@ -1,0 +1,45 @@
+
+{% block body %}
+    {% block main %}
+        <div>
+            <h1>Najbliższe wizyty</h1>
+            <a href="{{ path('site') }}">Powrót</a>
+        </div>
+        <div>
+            <table class="table datagrid">
+                <thead>
+                <tr>
+                    <th>Lp</th>
+                    <th scope="col">
+                        Początek wizyty
+                    </th>
+                    <th scope="col">
+                        Koniec wizyty
+                    </th>
+                    <th scope="col">
+                        Lekarz
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for key,item in visits %}
+                    <tr data-id="">
+                        <th scope="row">{{ key+1 }}</th>
+                        <td class="">
+                            {{ item.startDate | date }}
+                        </td>
+                        <td class="">
+                            {{ item.endDate | date('H:i') }}
+                        </td>
+                        <td class="">
+                            {{ item.doctor }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    {% endblock main %}
+{% endblock %}

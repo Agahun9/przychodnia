@@ -12,6 +12,14 @@
         {% endfor %}
 {% endfor %}
 
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 <a href="{{ path('app_login') }}">Logowanie</a>
+<a href="{{ path('app_register') }}">rejestracja</a>
+    {% endif %}
+{% if is_granted('ROLE_PATIENT') %}
+<a href="{{ path('app_visit_addvisit') }}">dodaj wizyte</a>
+    <a href="{{ path('app_visit_listvisit') }}">zobacz swoje wizyty</a>
+    <a href="{{ path('app_logout') }}">Wyloguj</a>
+{% endif %}
 </body>
 {% endblock %}
