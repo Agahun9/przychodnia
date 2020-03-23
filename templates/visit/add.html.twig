@@ -1,5 +1,33 @@
-{{ form_start(visitForm) }}
-        {{ form_row(visitForm.startDate) }}
-        {{ form_row(visitForm.doctor) }}
-<button class="btn">Register</button>
-{{ form_end(visitForm) }}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+{% include '/site/menu.html.twig'%}
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Register</h5>
+   
+            {{ form_start(visitForm) }}
+           
+                  {{ form_row(visitForm.startDate) }}
+              
+
+             
+                {{ form_row(visitForm.doctor) }}
+             
+
+          
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Add a visit</button>
+            {{ form_end(visitForm) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

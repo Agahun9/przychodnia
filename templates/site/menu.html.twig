@@ -1,0 +1,27 @@
+{% block menu %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Przychodnia</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a class="nav-item nav-link active" href="{{ path('app_login') }}">Login</a>
+      <a class="nav-item nav-link active" href="{{ path('app_register') }}">Patient register</a>
+      <a class="nav-item nav-link active" href="{{ path('app_register_doctor') }}">Doctor register</a>
+    {% endif %}
+    {% if is_granted('ROLE_PATIENT') %}
+    <a class="nav-item nav-link active" href="{{ path('app_visit_addvisit') }}">Add a visit</a>
+    <a class="nav-item nav-link active" href="{{ path('app_visit_listvisit') }}">Show your visits</a>
+    <a class="nav-item nav-link active" href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+    {% if is_granted('ROLE_DOCTOR') %}
+    <a class="nav-item nav-link active" href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+

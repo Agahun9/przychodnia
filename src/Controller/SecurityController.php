@@ -38,7 +38,7 @@ class SecurityController extends AbstractController implements LogoutSuccessHand
 
     public function onLogoutSuccess(Request $request)
     {
-        $this->addFlash("success_logout" , "Wylogowano poprawnie");
+        $this->addFlash("success_logout" , "Logout successful");
         return $this->render('site/index.html.twig');
     }
 

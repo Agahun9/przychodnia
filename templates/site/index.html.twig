@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SiteController!{% endblock %}
+{% block title %}Przychodnia{% endblock %}
 
 {% block body %}
 <body>
+{% include 'site/menu.html.twig'%}
 {% for label, messages in app.flashes(['success_logout']) %}
         {% for message in messages %}
                 <div class="flash-{{ label }}">
@@ -12,19 +13,7 @@
         {% endfor %}
 {% endfor %}
 
-{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-<a href="{{ path('app_login') }}">Logowanie</a>
-<a href="{{ path('app_register') }}">rejestracja pacjenta</a>
-    <a href="{{ path('app_register_doctor') }}">rejestracja lekarza</a>
-    {% endif %}
-{% if is_granted('ROLE_PATIENT') %}
-<a href="{{ path('app_visit_addvisit') }}">dodaj wizyte</a>
-    <a href="{{ path('app_visit_listvisit') }}">zobacz swoje wizyty</a>
-    <a href="{{ path('app_logout') }}">Wyloguj</a>
-{% endif %}
-{% if is_granted('ROLE_DOCTOR') %}
 
-    <a href="{{ path('app_logout') }}">Wyloguj</a>
-{% endif %}
 </body>
 {% endblock %}
+

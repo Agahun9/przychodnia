@@ -1,38 +1,39 @@
+{% extends 'base.html.twig' %}
 
 {% block body %}
-    {% block main %}
+{% include '/site/menu.html.twig'%}
         <div>
-            <h1>Najbliższe wizyty</h1>
-            <a href="{{ path('site') }}">Powrót</a>
+            <h1>Upcoming visits</h1>
+     
         </div>
         <div>
-            <table class="table datagrid">
-                <thead>
+            <table class="table">
+                <thead class ="thead-dark">
                 <tr>
                     <th>Lp</th>
                     <th scope="col">
-                        Początek wizyty
+                        Start of visit
                     </th>
                     <th scope="col">
-                        Koniec wizyty
+                        Visit end time
                     </th>
                     <th scope="col">
-                        Lekarz
+                        Doctor
                     </th>
                 </tr>
                 </thead>
 
                 <tbody>
                 {% for key,item in visits %}
-                    <tr data-id="">
+                    <tr>
                         <th scope="row">{{ key+1 }}</th>
-                        <td class="">
+                        <td>
                             {{ item.startDate | date }}
                         </td>
-                        <td class="">
+                        <td>
                             {{ item.endDate | date('H:i') }}
                         </td>
-                        <td class="">
+                        <td>
                             {{ item.doctor }}
                         </td>
                     </tr>
@@ -41,5 +42,6 @@
                 </tbody>
             </table>
         </div>
-    {% endblock main %}
+
+
 {% endblock %}
