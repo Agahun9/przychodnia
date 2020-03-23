@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Patient;
+use App\Entity\Doctor;
 use App\Entity\Specialization;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class RegistrationDoctorFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Patient::class,
+            'data_class' => Doctor::class
         ]);
     }
 }
