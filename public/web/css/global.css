@@ -136,3 +136,17 @@
       color: #777;
     }
   }
+
+  .stats{
+    background-color: #007bff;
+    width: 300px;
+    height: 115px;
+    padding:25px;
+    color:White;
+    text-align: center;
+  }
+  .stats > span{
+    color:white;
+    font-size:25px;
+    font-weight: 700;
+  }

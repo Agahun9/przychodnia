@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use App\Repository\DoctorRepository;
-
 class RegistrationController extends AbstractController
 {
     /**
@@ -58,7 +56,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register-doctor", name="app_register_doctor")
      */
-    public function registerDoctor(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator,DoctorRepository $doctorRepository): Response
+    public function registerDoctor(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
 
         $user = new Doctor();
@@ -94,8 +92,7 @@ class RegistrationController extends AbstractController
 
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-            'spec' => $doctorRepository->spec()
+            'registrationForm' => $form->createView()
         ]);
     }
 

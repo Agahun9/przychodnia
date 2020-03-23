@@ -20,4 +20,13 @@ class VisitRepository extends ServiceEntityRepository
            'patient' =>$patient
         ]);
     }
+
+    public function allVisits(){
+
+            return $this->createQueryBuilder('u')
+                ->select('count(u.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+                ;
+    }
 }

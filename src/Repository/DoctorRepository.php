@@ -3,19 +3,25 @@
 namespace App\Repository;
 
 
-use App\Entity\Specialization;
+use App\Entity\Doctor;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityRepository;
 
-class DoctorRepository extends EntityRepository
+
+class DoctorRepository extends ServiceEntityRepository
 {
-
-    public function spec()
+    public function __construct(ManagerRegistry $registry)
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p FROM Specialization p ORDER BY p.name ASC'
-            )
-            ->getResult();
+        parent::__construct($registry, Doctor::class);
+    }
+
+
+    public function allDoctors(){
+
+            return $this->createQueryBuilder('u')
+                ->select('count(u.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+                ;
     }
 }
