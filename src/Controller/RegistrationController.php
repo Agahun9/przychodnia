@@ -73,6 +73,8 @@ class RegistrationController extends AbstractController
             );
             $entityManager = $this->getDoctrine()->getManager();
             $user->setRoles(['ROLE_DOCTOR']);
+            $specialization = $form->get('specialization')->getData();
+            $user->setSpecialization($specialization);
             $entityManager->persist($user);
             $entityManager->flush();
 

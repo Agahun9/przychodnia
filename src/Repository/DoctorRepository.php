@@ -15,7 +15,11 @@ class DoctorRepository extends ServiceEntityRepository
         parent::__construct($registry, Doctor::class);
     }
 
-
+    public function finy(doctor $doctor){
+        return $this->findBy([
+            'doctor' =>$doctor
+        ]);
+    }
     public function allDoctors(){
 
             return $this->createQueryBuilder('u')

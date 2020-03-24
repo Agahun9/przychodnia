@@ -15,25 +15,28 @@
 
 <div class="container">
     <div class="row mt-5">
+        {% if allvisits is defined %}
         <div class="col-md-4">
                 <div class="stats">
                <p class="stats-text"> All visits booked</p>
                 <span>{{ allvisits }}</span>
                 </div>
-        </div>
+        </div>{% endif %}
+        {% if allvisits is defined %}
          <div class="col-md-4">
                 <div class="stats">
-                <p class="stats-text">All registered doctors </p>
+                    <p class="stats-text">All registered doctors</p>
                 <span>{{ alldoctors }}</span>
                 </div>
-        </div>
+        </div>{% endif %}
+        {% if allvisits is defined %}
          <div class="col-md-4">
                 <div class="stats">
                <p class="stats-text"> All registered Patients</p>
-                <span>{{ allpatients }}</span>
+                    <span>{{ allpatients }}</span>
                 </div>
         </div>
-    </div>
+    </div> {% endif %}
 </div>
 
 

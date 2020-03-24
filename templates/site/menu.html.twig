@@ -17,6 +17,7 @@
     <a class="nav-item nav-link active" href="{{ path('app_logout') }}">Logout</a>
     {% endif %}
     {% if is_granted('ROLE_DOCTOR') %}
+      <a class="nav-item nav-link active" href="{{ path('app_visit_listvisitdoctor') }}">Show your visits</a>
     <a class="nav-item nav-link active" href="{{ path('app_logout') }}">Logout</a>
     {% endif %}
     </div>

@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Visit;
 use App\Form\VisitFormType;
+use App\Repository\DoctorRepository;
 use App\Repository\VisitRepository;
 use App\Repository\VisitRepositoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 
 class VisitController extends AbstractController
@@ -49,5 +49,16 @@ class VisitController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_PATIENT');
         $visits = $visitRepository->findByPatient($this->getUser());
         return $this->render('visit/list.html.twig',['visits' => $visits]);
+    }
+
+    /**
+     * @Route("/list-visits-doctor")
+     * @param DoctorRepository $doctorRepository
+     * @return Response
+     */
+    public function listVisitDoctor(VisitRepository $visitRepository):Response{
+        $this->denyAccessUnlessGranted('ROLE_DOCTOR');
+        $doctor = $visitRepository->findByDoctor($this->getUser());
+        return $this->render('visit/list.html.twig',['visits' => $doctor]);
     }
 }
