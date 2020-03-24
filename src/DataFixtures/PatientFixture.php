@@ -23,9 +23,9 @@ class PatientFixture extends Fixture
         $patient ->setEmail('patient@patient.com');
         $patient ->setRoles(['ROLE_USER', 'ROLE_PATIENT']);
         $patient ->setFirstName('Jan');
-        $patient ->setLastName('kowalski');
+        $patient ->setLastName('Kowalski');
 
-        $patient ->setPassword($this->passwordEncoder->encodePassword($patient, 'pass'));
+        $patient ->setPassword($this->passwordEncoder->encodePassword($patient, 'patient'));
 
         $manager->persist($patient);
         $manager->flush();
